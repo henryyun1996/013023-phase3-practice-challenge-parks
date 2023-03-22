@@ -1,4 +1,5 @@
-
+from .visitor import Visitor
+from .national_park import NationalPark
 class Trip:
     all = []
 
@@ -7,7 +8,22 @@ class Trip:
         self.national_park = national_park
         self.start_date = start_date
         self.end_date = end_date
-
-        national_park.add_trips(self)
-        visitor.add_trips(self)
         Trip.all.append(self)
+        pass
+    def get_national_park(self):
+        return self._national_park
+    def set_national_park(self,input):
+        if type(input) == NationalPark:
+            self._national_park = input
+        else:
+            print("Not valid park")
+    national_park = property(get_national_park,set_national_park)
+
+    def get_visitor(self):
+        return self._visitor
+    def set_visitor(self,input):
+        if type(input) == Visitor:
+            self._visitor = input
+        else:
+            print("Not valid visitor")
+    visitor = property(get_visitor,set_visitor)
